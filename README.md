@@ -27,7 +27,6 @@ There are numerous approaches for querying data into a web application, and this
 - [jQuery Defered Objects](http://api.jquery.com/category/deferred-object/)
 - [JavaScript Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 - [D3.csv Docs](https://github.com/mbostock/d3/wiki/CSV)
-- [Spotify API Doc](https://developer.spotify.com/web-api/)
 
 ## Asynchronous Requests
 In order to ensure a smooth browser experience, most data request methods are structured (or defaulted) to occur **asynchronously**. Essentially, this means that the code that follows your data request will run before information has been returned to your page. As a result, you are unable to reference the requested information in your subsequent lines of code because they will execute **_before the request completes_**. In pseudo code, it looks something like this:
@@ -40,11 +39,11 @@ var myData;
 // and sets the variable `myData` equal to the data that is retrieved
 var getData = function() {
 
- // Go and get data (syntax describe below)
- var requestedData = ASYNC-DATA-REQUEST; // pseudo-code here
+  // Go and get data (syntax describe below)
+  var requestedData = ASYNC-DATA-REQUEST; // pseudo-code here
 
- // Set your global variable `myData` to the returned values
- myData; = requestedData;
+  // Set your global variable `myData` to the returned values
+  myData; = requestedData;
 };
 
 // Run the `getData` function
@@ -64,13 +63,13 @@ var myData;
 
 // A method that accepts two parameters: a URL to a data resource,
 // and a `callback` function, which will be executed when the server request completes:
-$.get('PATH-TO-DATA', function(error, data) {
+$.get('PATH-TO-DATA', function(data, error) {
 
- // Set `mData` as the data returned by your request
- myData = data;
+  // Set `mData` as the data returned by your request
+  myData = data;
 
- // Run a function that uses `myData`.
- buildGraph();
+  // Run a function that uses `myData`.
+  buildPage();
 });
  ```
 
@@ -83,11 +82,11 @@ var myData;
 // A callback function to process the data retrieved by the AJAX call
 var processData = function(error, data) {
 
- // Set `mData` as the data returned by your request
- myData = data;
+  // Set `mData` as the data returned by your request
+  myData = data;
 
- // Run a function that uses `myData`.
- buildGraph();
+  // Run a function that uses `myData`.
+  buildPage();
 };
 
 // A method that accepts two parameters: a URL to a data resource,
@@ -120,15 +119,15 @@ The **awesome** part about promises is that they return promises! This means you
 ```javascript
 // Stage an AJAX request that searches for a particular artist
 $.get('SEARCH-BY-NAME').then(
- // Function that executes if the initial request was successful:
- function(searchData) {
+  // Function that executes if the initial request was successful:
+  function(searchData) {
 
-  // Get the id of the top artist
-  var topArtistId = searchData[0].id;
+    // Get the id of the top artist
+    var topArtistId = searchData[0].id;
 
-  // Return a request that uses the topArtistId:
-  return $.get('GET-ARTIST-INFO/' + topArtistId);
- }
+    // Return a request that uses the topArtistId:
+    return $.get('GET-ARTIST-INFO/' + topArtistId);
+  }
 ).then(
  // Function that executes if the GET-ARTIST-INFO request was successful:
  function(artistData) {
