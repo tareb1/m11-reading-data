@@ -2,9 +2,9 @@
 
 // You'll have to wait for you page to load to assign events to the elements created in your index.html file
 $(function() {
-    // Use d3.csv to read in your `data/students.csv` dataset: remember, you must be running a local server
+    // Use $.get to read in your `data/students.csv` dataset: remember, you must be running a local server
     $.get('data/students.csv', function(data, error) {
-        // Parse the data
+        // Parse the data using Papa.parse
         var data = Papa.parse(data, {
             header: true
         }).data;
