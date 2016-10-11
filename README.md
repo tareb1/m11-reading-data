@@ -80,7 +80,7 @@ The second parameter to the function about is our **callback** function. It will
 var myData;
 
 // A callback function to process the data retrieved by the AJAX call
-var processData = function(error, data) {
+var processData = function(data, error) {
 
   // Set `mData` as the data returned by your request
   myData = data;
@@ -149,9 +149,9 @@ $.get('PATH-TO-DATA', callback);
 Here is an example of using the [Spotify API](https://developer.spotify.com/web-api/) to retrieve information about artists that match a query for "adele".
 
 ```javascript
-$.get('https://api.spotify.com/v1/search?q=adele&type=artist', function(error, data) {
- // Log the information that was returned
- console.log(data);
+$.get('https://api.spotify.com/v1/search?q=adele&type=artist', function(data, error) {
+  // Log the information that was returned
+  console.log(data);
 });
 ```
 
