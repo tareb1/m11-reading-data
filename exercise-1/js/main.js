@@ -4,11 +4,19 @@
 $(function() {
     // Use $.get to read in your `data/students.csv` dataset: remember, you must be running a local server
 
-        // Parse the data using Papa.parse
+    $.get("data/students.csv", function(data,error) {
 
+        // Parse the data using Papa.parse
+        console.log(data);
+        var parsedData = Papa.parse(data, {
+          header: true
+        }).data;
+
+        console.log(parsedData);
+        console.log(parsedData)
 
         // Use jQuery to create a table, and store that in a variable
-
+        var table = $('<table>');
 
         // Append a table header for each key in your first observation
 
